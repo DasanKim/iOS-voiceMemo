@@ -11,7 +11,6 @@ struct TodoListView: View {
     
     var body: some View {
         ZStack {
-            // todo cell List
             VStack {
                 if !todoListViewModel.todos.isEmpty {
                     CustomNavigationBar(
@@ -111,7 +110,6 @@ private struct TodoListContentView: View {
                         .frame(height: 1)
                     
                     ForEach(todoListViewModel.todos, id: \.self) { todo in
-                        // TODO: - Todo 셀 뷰 todo 넣어서 뷰 호출
                         TodoCellView(todo: todo)
                     }
                 }
@@ -148,6 +146,7 @@ private struct TodoCellView: View {
                     Text(todo.title)
                         .font(.system(size:16))
                         .foregroundColor(todo.selected ? .customIconGray : .customBlack)
+                        .strikethrough(todo.selected)
                     
                     Text(todo.convertedDayAndTime)
                         .font(.system(size: 16))
@@ -168,13 +167,13 @@ private struct TodoCellView: View {
                     )
                 }
             }
+            .padding(.horizontal, 20)
+            .padding(.top, 10)
+            
+            Rectangle()
+                .fill(Color.customGray0)
+                .frame(height: 1)
         }
-        .padding(.horizontal, 20)
-        .padding(.top, 10)
-        
-        Rectangle()
-            .fill(Color.customGray0)
-            .frame(height: 1)
     }
 }
 
