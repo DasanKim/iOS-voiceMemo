@@ -63,6 +63,7 @@ struct HomeView: View {
                     .tag(Tab.setting)
                 
             }
+            .environmentObject(homeViewModel)
             
             SeperatorLineView()
         }
